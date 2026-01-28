@@ -1,0 +1,243 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* DineIn Design System - Warm, appetizing food-app aesthetic */
+
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+
+@layer base {
+  :root {
+    /* Core palette - Warm, inviting restaurant vibes */
+    --background: 30 15% 98%;
+    --foreground: 20 20% 12%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 20 20% 12%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 20 20% 12%;
+
+    /* Primary - Deep amber/orange (appetizing, action-oriented) */
+    --primary: 25 95% 53%;
+    --primary-foreground: 0 0% 100%;
+
+    /* Secondary - Warm cream */
+    --secondary: 35 30% 94%;
+    --secondary-foreground: 20 20% 20%;
+
+    /* Muted - Soft warm gray */
+    --muted: 30 10% 94%;
+    --muted-foreground: 20 10% 45%;
+
+    /* Accent - Soft coral for highlights */
+    --accent: 15 85% 95%;
+    --accent-foreground: 15 75% 40%;
+
+    /* Status colors */
+    --success: 142 70% 45%;
+    --success-foreground: 0 0% 100%;
+    
+    --warning: 38 95% 50%;
+    --warning-foreground: 0 0% 100%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    /* UI elements */
+    --border: 30 15% 88%;
+    --input: 30 15% 88%;
+    --ring: 25 95% 53%;
+
+    --radius: 0.75rem;
+
+    /* Custom tokens */
+    --gradient-warm: linear-gradient(135deg, hsl(25 95% 53%) 0%, hsl(15 90% 55%) 100%);
+    --gradient-soft: linear-gradient(180deg, hsl(30 15% 98%) 0%, hsl(35 20% 96%) 100%);
+    --gradient-card: linear-gradient(145deg, hsl(0 0% 100%) 0%, hsl(30 20% 98%) 100%);
+    
+    --shadow-soft: 0 2px 8px -2px hsl(20 20% 12% / 0.08);
+    --shadow-card: 0 4px 20px -4px hsl(20 20% 12% / 0.1);
+    --shadow-elevated: 0 8px 30px -6px hsl(20 20% 12% / 0.15);
+    --shadow-glow: 0 0 40px -10px hsl(25 95% 53% / 0.3);
+
+    /* Sidebar tokens */
+    --sidebar-background: 30 15% 98%;
+    --sidebar-foreground: 20 20% 20%;
+    --sidebar-primary: 25 95% 53%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 35 30% 94%;
+    --sidebar-accent-foreground: 20 20% 20%;
+    --sidebar-border: 30 15% 88%;
+    --sidebar-ring: 25 95% 53%;
+  }
+
+  .dark {
+    --background: 20 15% 8%;
+    --foreground: 30 15% 95%;
+
+    --card: 20 12% 12%;
+    --card-foreground: 30 15% 95%;
+
+    --popover: 20 12% 12%;
+    --popover-foreground: 30 15% 95%;
+
+    --primary: 25 95% 55%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 20 10% 18%;
+    --secondary-foreground: 30 15% 90%;
+
+    --muted: 20 10% 18%;
+    --muted-foreground: 30 10% 55%;
+
+    --accent: 25 40% 18%;
+    --accent-foreground: 25 95% 70%;
+
+    --success: 142 70% 45%;
+    --success-foreground: 0 0% 100%;
+
+    --warning: 38 95% 50%;
+    --warning-foreground: 0 0% 100%;
+
+    --destructive: 0 65% 50%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 20 10% 20%;
+    --input: 20 10% 20%;
+    --ring: 25 95% 55%;
+
+    --gradient-warm: linear-gradient(135deg, hsl(25 95% 55%) 0%, hsl(15 90% 50%) 100%);
+    --gradient-soft: linear-gradient(180deg, hsl(20 15% 8%) 0%, hsl(20 12% 10%) 100%);
+    --gradient-card: linear-gradient(145deg, hsl(20 12% 12%) 0%, hsl(20 10% 10%) 100%);
+
+    --shadow-soft: 0 2px 8px -2px hsl(0 0% 0% / 0.3);
+    --shadow-card: 0 4px 20px -4px hsl(0 0% 0% / 0.4);
+    --shadow-elevated: 0 8px 30px -6px hsl(0 0% 0% / 0.5);
+    --shadow-glow: 0 0 40px -10px hsl(25 95% 55% / 0.4);
+
+    --sidebar-background: 20 15% 8%;
+    --sidebar-foreground: 30 15% 90%;
+    --sidebar-primary: 25 95% 55%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 20 10% 18%;
+    --sidebar-accent-foreground: 30 15% 90%;
+    --sidebar-border: 20 10% 20%;
+    --sidebar-ring: 25 95% 55%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  html {
+    font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    background: var(--gradient-soft);
+    min-height: 100vh;
+  }
+}
+
+@layer components {
+  /* Food card hover effect */
+  .food-card {
+    @apply relative overflow-hidden rounded-xl bg-card transition-all duration-300;
+    box-shadow: var(--shadow-card);
+  }
+  
+  .food-card:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-elevated);
+  }
+
+  /* Warm gradient button */
+  .btn-warm {
+    background: var(--gradient-warm);
+    @apply text-white font-semibold shadow-lg transition-all duration-200;
+  }
+  
+  .btn-warm:hover {
+    box-shadow: var(--shadow-glow);
+    transform: translateY(-1px);
+  }
+  
+  .btn-warm:active {
+    transform: translateY(0);
+  }
+
+  /* Category pill */
+  .category-pill {
+    @apply px-4 py-2 rounded-full font-medium transition-all duration-200;
+  }
+  
+  .category-pill-active {
+    background: var(--gradient-warm);
+    @apply text-white shadow-md;
+  }
+  
+  .category-pill-inactive {
+    @apply bg-secondary text-secondary-foreground hover:bg-accent;
+  }
+
+  /* Status badges */
+  .status-badge {
+    @apply inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-sm font-medium;
+  }
+
+  /* Glass effect for floating elements */
+  .glass {
+    @apply backdrop-blur-md;
+    background: hsl(var(--card) / 0.85);
+  }
+
+  /* Animated underline */
+  .animated-underline {
+    @apply relative;
+  }
+  
+  .animated-underline::after {
+    content: '';
+    @apply absolute bottom-0 left-0 w-0 h-0.5 bg-primary transition-all duration-300;
+  }
+  
+  .animated-underline:hover::after {
+    @apply w-full;
+  }
+
+  /* Cart item animation */
+  .cart-item {
+    @apply transition-all duration-200;
+  }
+  
+  .cart-item:hover {
+    @apply bg-accent/50;
+  }
+}
+
+@layer utilities {
+  /* Hide scrollbar but keep functionality */
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* Smooth scroll snap */
+  .snap-x-mandatory {
+    scroll-snap-type: x mandatory;
+  }
+  
+  .snap-start {
+    scroll-snap-align: start;
+  }
+}
